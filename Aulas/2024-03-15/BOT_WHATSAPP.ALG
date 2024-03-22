@@ -27,6 +27,8 @@ Var // Seção de Declarações das variáveis
     
     qnt_produto: inteiro
     
+    forma_pagamento: caractere
+    
     valor_total_produtos, valor_entrega: real
 
 Inicio // Seção de Comandos, procedimento, funções, operadores, etc...
@@ -58,6 +60,8 @@ Inicio // Seção de Comandos, procedimento, funções, operadores, etc...
         
         Se(condicao = 1) Entao
         
+            LimpaTela()
+        
             Escreval("--------------------------------------------------------------")
 
             Escreval("Cardápio:")
@@ -88,24 +92,28 @@ Inicio // Seção de Comandos, procedimento, funções, operadores, etc...
     Escreval("Digite a quantidade desejada:")
     Leia(qnt_produto)
     
-    Escreval("--------------------------------------------------------------")
-    
     condicao <- 0
     
-    Escreval("Forma de pagamento:")
+    Repita
     
-    Escreval("")
+        Escreval("--------------------------------------------------------------")
     
-    Escreval("----------------------------------")
-    Escreval("1 - Dinheiro.")
-    Escreval("----------------------------------")
-    Escreval("2 - Cartão.")
-    Escreval("----------------------------------")
+        Escreval("Forma de pagamento:")
     
-    Escreval("")
+        Escreval("")
     
-    Escreval("Escolha uma forma de pagamento:")
-    Leia(condicao)
+        Escreval("----------------------------------")
+        Escreval("1 - Dinheiro.")
+        Escreval("----------------------------------")
+        Escreval("2 - Cartão.")
+        Escreval("----------------------------------")
+    
+        Escreval("")
+    
+        Escreval("Escolha uma forma de pagamento:")
+        Leia(condicao)
+        
+    ATE(condicao = 1) OU (condicao = 2)
     
     Se(condicao = 2) Entao
     
@@ -133,6 +141,18 @@ Inicio // Seção de Comandos, procedimento, funções, operadores, etc...
     
     FimEscolha
     
+    Escolha(condicao)
+
+        Caso 1
+
+            forma_pagamento <- "Dinheiro."
+
+        Caso 2
+
+            forma_pagamento <- "Cartão."
+
+    FimEscolha
+    
     Escreval("")
     
     Escreval("Quantidade pedida:", qnt_produto)
@@ -148,6 +168,10 @@ Inicio // Seção de Comandos, procedimento, funções, operadores, etc...
     valor_entrega <- valor_total_produtos * 0.10
 
     Escreval("Valor da taxa de entrega: R$", valor_entrega:2:2)
+    
+    Escreval("")
+    
+    Escreval("Forma de pagamento escolhida: ", forma_pagamento)
     
     Escreval("")
 
