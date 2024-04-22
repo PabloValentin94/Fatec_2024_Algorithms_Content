@@ -1,4 +1,4 @@
-Algoritmo "Ordem_Crescente"
+Algoritmo "Ordem"
 
 // Disciplina: Algoritmos e Lógica de Programação.
 // Professor: Tiago Antônio da Silva.
@@ -6,9 +6,14 @@ Algoritmo "Ordem_Crescente"
 // Autor(a): Pablo Valentin.
 // Data atual: 19/04/2024
 
+// estão ocorrendo problemas de travamento na geração e
+// exibição de números aleatórios.
+
 Var // Seção de Declarações das variáveis
 
     qnt_numeros: inteiro
+    
+    opcao: inteiro
     
     i, j: inteiro
     
@@ -21,6 +26,8 @@ Var // Seção de Declarações das variáveis
     limite_maior_numero: inteiro
     
     ordem: vetor[1..100] de real
+    
+    tipo_ordem: inteiro
     
     // Analisando se um número já foi verificado e adicionado ao
     // vetor da ordem crescente:
@@ -85,6 +92,32 @@ Inicio // Seção de Comandos, procedimento, funções, operadores, etc...
     Escreval("Defina um número limite (Nenhum será maior do que este.):")
     Leia(limite_maior_numero)
     
+    Escreval("")
+    
+    Escreval("----------------------------------------")
+    Escreval("01 - Inserir números manualmente.")
+    Escreval("----------------------------------------")
+    Escreval("02 - Gerar números aleatoriamente.")
+    Escreval("----------------------------------------")
+    
+    Escreval("")
+    
+    Escreval("Escolha uma das opções acima:")
+    Leia(opcao)
+    
+    Escreval("")
+
+    Escreval("----------------------------------------")
+    Escreval("01 - Ordem crescente.")
+    Escreval("----------------------------------------")
+    Escreval("02 - Ordem decrescente.")
+    Escreval("----------------------------------------")
+
+    Escreval("")
+
+    Escreval("Escolha uma das opções acima:")
+    Leia(tipo_ordem)
+
     LimpaTela()
     
     Escreval("------------------------------------------------------------")
@@ -96,9 +129,25 @@ Inicio // Seção de Comandos, procedimento, funções, operadores, etc...
         Repita
         
             Repita
+            
+                Se(opcao = 1) Entao
         
-                Escreval("Digite o", i, "º número:")
-                Leia(numero_atual)
+                    Escreval("Digite o", i, "º número:")
+                    Leia(numero_atual)
+                
+                Senao
+                
+                    numero_atual <- randi(limite_maior_numero) + 1
+                
+                    Escolha(randi(2))
+                    
+                        Caso(0)
+                        
+                            numero_atual <- -numero_atual
+                        
+                    FimEscolha
+                
+                FimSe
                 
                 // Verificando se o número é maior do que o limite imposto:
                 
@@ -132,41 +181,37 @@ Inicio // Seção de Comandos, procedimento, funções, operadores, etc...
                         
                     FimSe
 
-                    continuidade <- Verdadeiro
+                    continuidade <- Falso
 
                     Interrompa
                     
                 Senao
                 
-                    continuidade <- Falso
+                    continuidade <- Verdadeiro
                 
                 FimSe
             
             FimPara
             
-            Se(continuidade = Falso) Entao
+            Se(continuidade = Verdadeiro) Entao
             
                numeros[i] <- numero_atual
                
             FimSe
 
-            Se(i < qnt_numeros) OU (continuidade = Verdadeiro) Entao
+            Se(i < qnt_numeros) OU (continuidade = Falso) Entao
 
                 Escreval("")
 
             FimSe
         
-        ATE (continuidade = Falso)
+        ATE (continuidade = Verdadeiro)
     
     FimPara
     
     LimpaTela()
 
     Escreval("------------------------------------------------------------")
-
-    Escreval("Ordem Crescente:")
-    
-    Escreval("")
     
     Para i de 1 ATE qnt_numeros Faca
     
@@ -194,17 +239,45 @@ Inicio // Seção de Comandos, procedimento, funções, operadores, etc...
     
     // Listando os números (De forma ordenada.):
     
-    Para i de 1 ATE qnt_numeros Faca
+    Escolha(tipo_ordem)
+    
+        caso(1)
+        
+            Escreval("Ordem Crescente:")
 
-        Escreval(ordem[i]:1)
-        
-        Se(i < qnt_numeros) Entao
-        
             Escreval("")
-            
-        FimSe
+    
+            Para i de 1 ATE qnt_numeros Faca
 
-    FimPara
+                Escreval(ordem[i]:1)
+        
+                Se(i < qnt_numeros) Entao
+        
+                    Escreval("")
+            
+                FimSe
+
+            FimPara
+            
+        Caso(2)
+        
+        Escreval("Ordem Decrescente:")
+
+        Escreval("")
+        
+           Para i de 1 ATE qnt_numeros Faca
+
+                Escreval(ordem[qnt_numeros + 1 - i]:1)
+
+                Se(i < qnt_numeros) Entao
+
+                    Escreval("")
+
+                FimSe
+
+            FimPara
+        
+    FimEscolha
     
     Escreval("------------------------------------------------------------")
 
