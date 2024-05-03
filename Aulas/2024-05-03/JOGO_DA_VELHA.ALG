@@ -8,11 +8,13 @@ Algoritmo "Jogo_da_Velha"
 
 Var // Seção de Declarações das variáveis
 
-    jogadas: vetor[1..3,1..3] de caractere
-
     decisao: caractere
 
+    jogadas: vetor[1..3,1..3] de caractere
+
     jogador_X, jogador_O: caractere
+    
+    vez: caractere
     
     i: inteiro
     
@@ -20,49 +22,51 @@ Var // Seção de Declarações das variáveis
     
     resultado_validacao: caractere
     
-    vez: caractere
-    
     velha: logico
+    
+    // Procedimento que gera a estrutura de um jogo da velha:
     
     Procedimento Gerar_Interface()
     
     Inicio
     
-          Escreva(jogadas[1,1])
-          Escreva("|")
-          Escreva(jogadas[1,2])
-          Escreva("|")
-          Escreval(jogadas[1,3])
+        Escreva(jogadas[1,1])
+        Escreva("|")
+        Escreva(jogadas[1,2])
+        Escreva("|")
+        Escreval(jogadas[1,3])
           
-          Escreva("_")
-          Escreva(" ")
-          Escreva("_")
-          Escreva(" ")
-          Escreval("_")
+        Escreva("_")
+        Escreva(" ")
+        Escreva("_")
+        Escreva(" ")
+        Escreval("_")
           
-          Escreval("")
+        Escreval("")
           
-          Escreva(jogadas[2,1])
-          Escreva("|")
-          Escreva(jogadas[2,2])
-          Escreva("|")
-          Escreval(jogadas[2,3])
+        Escreva(jogadas[2,1])
+        Escreva("|")
+        Escreva(jogadas[2,2])
+        Escreva("|")
+        Escreval(jogadas[2,3])
           
-          Escreva("_")
-          Escreva(" ")
-          Escreva("_")
-          Escreva(" ")
-          Escreval("_")
+        Escreva("_")
+        Escreva(" ")
+        Escreva("_")
+        Escreva(" ")
+        Escreval("_")
           
-          Escreval("")
+        Escreval("")
           
-          Escreva(jogadas[3,1])
-          Escreva("|")
-          Escreva(jogadas[3,2])
-          Escreva("|")
-          Escreval(jogadas[3,3])
+        Escreva(jogadas[3,1])
+        Escreva("|")
+        Escreva(jogadas[3,2])
+        Escreva("|")
+        Escreval(jogadas[3,3])
     
     FimProcedimento
+    
+    // Função que preenche um campo do jogo da velha com X ou O:
     
     Funcao Definir_Posicao(campo: caractere) : caractere
     
@@ -72,77 +76,79 @@ Var // Seção de Declarações das variáveis
 
     Inicio
 
-          Escolha(campo)
+        Escolha(campo)
           
-              Caso("1")
+            Caso("1")
               
-                  linha <- 1
+                linha <- 1
                   
-                  coluna <- 1
+                coluna <- 1
                   
-              Caso("2")
+            Caso("2")
 
-                  linha <- 1
+                linha <- 1
 
-                  coluna <- 2
+                coluna <- 2
                   
-              Caso("3")
+            Caso("3")
 
-                  linha <- 1
+                linha <- 1
 
-                  coluna <- 3
+                coluna <- 3
                   
-              Caso("4")
+            Caso("4")
 
-                  linha <- 2
+                linha <- 2
 
-                  coluna <- 1
+                coluna <- 1
                   
-              Caso("5")
+            Caso("5")
 
-                  linha <- 2
+                linha <- 2
 
-                  coluna <- 2
+                coluna <- 2
                   
-              Caso("6")
+            Caso("6")
 
-                  linha <- 2
+                linha <- 2
 
-                  coluna <- 3
+                coluna <- 3
                   
-              Caso("7")
+            Caso("7")
 
-                  linha <- 3
+                linha <- 3
 
-                  coluna <- 1
+                coluna <- 1
                   
-              Caso("8")
+            Caso("8")
 
-                  linha <- 3
+                linha <- 3
 
-                  coluna <- 2
+                coluna <- 2
                   
-              Caso("9")
+            Caso("9")
 
-                  linha <- 3
+                linha <- 3
 
-                  coluna <- 3
+                coluna <- 3
           
-          FimEscolha
+        FimEscolha
           
-          Se(jogadas[linha, coluna] <> "X") E (jogadas[linha, coluna] <> "O") Entao
+        Se(jogadas[linha, coluna] <> "X") E (jogadas[linha, coluna] <> "O") Entao
           
-              jogadas[linha, coluna] <- vez
+            jogadas[linha, coluna] <- vez
           
-              Retorne "Opção disponível. Jogada salva."
+            Retorne "Opção disponível. Jogada salva."
               
-          Senao
+        Senao
           
-              Retorne "Opção indisponível! Tente outra."
+            Retorne "Opção indisponível! Tente outra."
               
-          FimSe
+        FimSe
 
     FimFuncao
+    
+    // Função que verifica se alguém venceu:
     
     Funcao Verificar_Jogo() : logico
     
@@ -287,70 +293,69 @@ Inicio // Seção de Comandos, procedimento, funções, operadores, etc...
             
             ATE(resultado_validacao = "Opção disponível. Jogada salva.")
             
+            // Se a condição abaixo for verdadeira, todo o código posterior
+            // a ela não será executado.
+            
             Se(Verificar_Jogo() = Verdadeiro) Entao
 
                 Interrompa()
-                
-            Senao
-            
-                Se(i = 9) Entao
-                
-                    velha <- Verdadeiro
-                    
-                    Interrompa()
-                
-                FimSe
 
             FimSe
             
-            Se(vez = "X") Entao
-            
-                vez <- "O"
-                
-            Senao
-            
-                vez <- "X"
-                
-            FimSe
+            // Código executado, caso a condição anterior seja falsa:
             
             Se(i < 9) Entao
             
                 Escreval("")
                 
+            Senao
+            
+                velha <- Verdadeiro
+                
+            FimSe
+            
+            Se(vez = "X") Entao
+
+                vez <- "O"
+
+            Senao
+
+                vez <- "X"
+
             FimSe
             
         FimPara
         
-    LimpaTela()
+        LimpaTela()
         
-    Escreval("----------------------------------------------------------")
+        Escreval("----------------------------------------------------------")
     
-    Se(velha = Verdadeiro) Entao
+        Se(velha = Verdadeiro) Entao
     
-        Escreval("Empate!")
+            Escreval("Empate!")
         
-    Senao
+        Senao
     
-        Escolha(vez)
+            Escolha(vez)
 
-           Caso("X")
+               Caso("X")
 
-               Escreval(jogador_X, " venceu!")
+                   Escreval(jogador_X, " venceu!")
 
-           Caso("O")
+               Caso("O")
 
-               Escreval(jogador_O, " venceu!")
+                   Escreval(jogador_O, " venceu!")
 
-        FimEscolha
+            FimEscolha
     
-    FimSe
+        FimSe
                 
-    Escreval("----------------------------------------------------------")
+        Escreval("----------------------------------------------------------")
     
-    Escreval("Deseja jogar outra partida? (S/N)")
-    Leia(decisao)
+        Escreval("Deseja jogar outra partida? (S/N)")
+        Leia(decisao)
     
-    Escreval("----------------------------------------------------------")
+        Escreval("----------------------------------------------------------")
         
     ATE(decisao = "N")
 
