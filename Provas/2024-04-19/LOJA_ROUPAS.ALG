@@ -31,7 +31,7 @@ Algoritmo "Loja_Roupas"
 // D) Não deverão ser aceitas quantidades negativas de produtos.
 
 // E) Comentem o código fonte, explicando cada trecho e o porquê da escolha
-// das estruturas no algoritmo
+// das estruturas no algoritmo.
 
 Var // Seção de Declarações das variáveis
 
