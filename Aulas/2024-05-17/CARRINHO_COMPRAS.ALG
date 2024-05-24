@@ -80,6 +80,10 @@ Var
 
 Inicio
 
+    Listar()
+    
+    Escreval("--------------------------------------------------------")
+
     Escreval("Informe o código do produto:")
     Leia(indice_item)
     
@@ -114,6 +118,10 @@ Var
 
 Inicio
 
+    Listar()
+
+    Escreval("--------------------------------------------------------")
+
     Escreval("Informe o código do produto:")
     Leia(indice_item)
     
@@ -139,36 +147,51 @@ Procedimento Listar()
 Var
 
     i: inteiro
+    
+    indice_listagem: inteiro
 
 Inicio
+
+    gasto_total <- 0
+
+    Escreval("Itens da venda corrente:")
+    
+    Escreval("")
 
     Para i DE 1 ATE 5 Faca
     
         Se(itens[i].nome <> "") Entao
         
-             Escreval("Produto:", i, ":")
+             indice_listagem <- indice_listagem + 1
+        
+             Escreval(indice_listagem:1, " - ", itens[i].nome, ":")
              
              Escreval("")
         
              Escreval("Código:", i, ".")
-             Escreval("Nome: ", itens[i].nome, ".")
              Escreval("Quantidade:", itens[i].qnt, ".")
              Escreval("Valor unitário: R$", itens[i].preco:2:2)
-             Escreval("Total: R$", itens[i].preco:2:2)
+             Escreval("Total: R$", itens[i].total:2:2)
              
-             Se(i < 5) E (itens[i + 1].nome <> "") Entao
-             
-                 Escreval("")
-                 
-             FimSe
+             gasto_total <- gasto_total + itens[i].total
         
+        FimSe
+        
+        Se(i < 5) Entao
+
+            Se(itens[i + 1].nome <> "") Entao
+            
+                Escreval("")
+            
+            FimSe
+
         FimSe
     
     FimPara
 
 FimProcedimento
 
-Var // Seção de Declarações das variáveis
+Var // Seção de declarações das variáveis globais.
 
     itens: vetor[1..5] de produto
     
@@ -177,8 +200,10 @@ Var // Seção de Declarações das variáveis
     qnt_itens_adicionados: inteiro
     
     espera: caractere
+    
+    gasto_total: real
 
-Inicio // Seção de Comandos, procedimento, funções, operadores, etc...
+Inicio // Seção de comandos, procedimentos, funções, operadores, etc.
 
     Repita
 
@@ -257,5 +282,17 @@ Inicio // Seção de Comandos, procedimento, funções, operadores, etc...
         FimEscolha
         
     ATE(opcao = 5)
+    
+    Escreval("Compra efetuada com sucesso!")
+    
+    Escreval("--------------------------------------------------------")
+    
+    Listar()
+    
+    Escreval("--------------------------------------------------------")
+    
+    Escreval("Valor total a pagar: R$", gasto_total:2:2)
+    
+    Escreval("--------------------------------------------------------")
 
 Fimalgoritmo
