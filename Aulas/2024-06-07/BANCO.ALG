@@ -140,6 +140,8 @@ Var
 
    valor_deposito: real
 
+   deposito_valido: logico
+
 Inicio
 
    LimpaTela()
@@ -151,27 +153,49 @@ Inicio
       Escreval("Limite de depósitos atingido! Tente novamente outro dia.")
 
    Senao
-   
-      Escreval("Saldo bancário atual: R$", saldo_bancario:2:2)
 
-      Escreval("---------------------------------------------------------")
+      Escreval("Saldo bancário atual: R$", saldo_bancario:2:2)
 
       contador_depositos <- contador_depositos + 1
 
-      Escreval("Digite o valor desejado para depósito:")
-      Leia(valor_deposito)
+      Repita
 
-      deposito.situacao <- "Depósito (Entrada)."
+         Escreval("---------------------------------------------------------")
 
-      deposito.saldo_inicial <- saldo_bancario
+         Escreval("Digite o valor desejado para depósito:")
+         Leia(valor_deposito)
 
-      deposito.valor <- valor_deposito
+         Se(valor_deposito < 0) Entao
 
-      saldo_bancario <- saldo_bancario + valor_deposito
+            deposito_valido <- Falso
 
-      deposito.saldo_final <- saldo_bancario
+            Escreval("")
 
-      depositos[contador_depositos] <- deposito
+            Escreval("Valor inválido! Tente novamente.")
+
+         Senao
+         
+            deposito_valido <- Verdadeiro
+
+            Se(valor_deposito > 0) Entao
+
+               deposito.situacao <- "Depósito (Entrada)."
+
+               deposito.saldo_inicial <- saldo_bancario
+
+               deposito.valor <- valor_deposito
+
+               saldo_bancario <- saldo_bancario + valor_deposito
+
+               deposito.saldo_final <- saldo_bancario
+
+               depositos[contador_depositos] <- deposito
+               
+             FimSe
+
+         FimSe
+
+      ATE(deposito_valido = Verdadeiro)
 
    FimSe
 
@@ -187,10 +211,12 @@ Var
 
    valor_saque: real
 
+   saque_valido: logico
+
 Inicio
 
    LimpaTela()
-   
+
    Escreval("---------------------------------------------------------")
 
    Se(contador_saques + 1 > 5) Entao
@@ -204,7 +230,7 @@ Inicio
       // As estruturas REPITA e ENQUANTO não estão funcionando
       // corretamente, neste procedimento, por isso o PARA
       // foi adaptado, para suprir a necessidade atual.
-      
+
       Escreval("Saldo bancário atual: R$", saldo_bancario:2:2)
 
       Para j DE 1 ATE 100 Faca
@@ -222,19 +248,33 @@ Inicio
 
          Senao
 
-            saque.situacao <- "Saque (Saída)."
+            Se(valor_saque < 0) Entao
 
-            saque.saldo_inicial <- saldo_bancario
+               Escreval("")
 
-            saque.valor <- valor_saque
+               Escreval("Valor inválido! Tente novamente.")
 
-            saldo_bancario <- saldo_bancario - valor_saque
+            Senao
 
-            saque.saldo_final <- saldo_bancario
+               Se(valor_saque > 0) Entao
+               
+                  saque.situacao <- "Saque (Saída)."
 
-            saques[contador_saques] <- saque
+                  saque.saldo_inicial <- saldo_bancario
 
-            Interrompa()
+                  saque.valor <- valor_saque
+
+                  saldo_bancario <- saldo_bancario - valor_saque
+
+                  saque.saldo_final <- saldo_bancario
+
+                  saques[contador_saques] <- saque
+                  
+               FimSe
+
+               Interrompa()
+
+            FimSe
 
          FimSe
 
@@ -250,31 +290,33 @@ Var
 
    opcao: inteiro
 
-   operacoes: vetor[1..5] de operacao
+   operacoes: vetor[1..10] de operacao
 
    situacao: caractere
 
    condicao: caractere
 
-   k: inteiro
+   qnt_operacoes, k: inteiro
 
    indice: inteiro
 
 Inicio
 
    LimpaTela()
-   
+
    Escreval("---------------------------------------------------------")
 
    Escreval("Opções:")
 
    Escreval("")
 
-   Escreval("------------------------------------")
+   Escreval("---------------------------------------------")
    Escreval("01 - Exibir histórico de depósitos.")
-   Escreval("------------------------------------")
+   Escreval("---------------------------------------------")
    Escreval("02 - Exibir histórico de saques.")
-   Escreval("------------------------------------")
+   Escreval("---------------------------------------------")
+   Escreval("03 - Exibir histórico de todas as operações.")
+   Escreval("---------------------------------------------")
 
    Escreval("")
 
@@ -289,21 +331,33 @@ Inicio
 
       situacao <- "depósito:"
 
+      condicao <- depositos[1].situacao
+
+      qnt_operacoes <- 5
+
    Caso(2)
 
       situacao <- "saque:"
 
-   FimEscolha
+      condicao <- saques[1].situacao
 
-   Se(situacao = "depósito:") Entao
+      qnt_operacoes <- 5
+
+   Caso(3)
+
+      situacao <- "operação:"
 
       condicao <- depositos[1].situacao
 
-   Senao
+      Se(condicao = "") Entao
 
-      condicao <- saques[1].situacao
+         condicao <- saques[1].situacao
 
-   FimSe
+      FimSe
+
+      qnt_operacoes <- 10
+
+   FimEscolha
 
    Se(condicao <> "") Entao
 
@@ -311,20 +365,36 @@ Inicio
 
       Escreval("")
 
-      Para k DE 1 ATE 5 Faca
-      
-         Se(situacao = "depósito:") Entao
+      Para k DE 1 ATE qnt_operacoes Faca
 
-            operacoes[k] <- depositos[k]
+         Se(qnt_operacoes > 5) Entao
+         
+            Se(k <= 5) Entao
 
+               operacoes[k] <- depositos[k]
+
+            Senao
+
+               operacoes[k] <- saques[k - 5]
+
+            FimSe
+            
          Senao
+         
+            Se(situacao = "depósito:") Entao
 
-            operacoes[k] <- saques[k]
+               operacoes[k] <- depositos[k]
 
+            Senao
+
+               operacoes[k] <- saques[k]
+
+            FimSe
+         
          FimSe
 
          Se(operacoes[k].situacao <> "") Entao
-         
+
             indice <- indice + 1
 
             Escreval(indice:1, "ª operação:")
@@ -348,7 +418,7 @@ Inicio
    Senao
 
       Escreval("Não há nada a ser exibido, até o momento.")
-      
+
       Escreval("")
 
    FimSe
