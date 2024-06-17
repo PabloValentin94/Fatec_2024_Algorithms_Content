@@ -222,9 +222,13 @@ Inicio
 
          FimSe
 
-         Se(k + 1 < 6) E (eleitores[k + 1].voto <> "") Entao
+         Se(k + 1 < 5) Entao
+         
+            Se(eleitores[k + 1].voto <> "") Entao
 
-            Escreval("")
+               Escreval("")
+
+            FimSe
 
          FimSe
 
@@ -300,26 +304,30 @@ Inicio // Seção de Comandos, procedimento, funções, operadores, etc...
 
       Gerar_Relatorio()
 
-      Se(fim = "S") Entao
+      Se(fim = "N") Entao
 
-         Interrompa()
+         Se(i < 5) Entao
+         
+            Escreval("")
 
-      Senao
-
-         Escreval("")
-
-         Escreva("Pressione Enter para continuar...")
-         Leia(espera)
-
-         Se(i + 1 > 5) Entao
+            Escreva("Pressione Enter para continuar...")
+            Leia(espera)
+            
+         Senao
+         
+            LimpaTela()
 
             Escreval("-----------------------------------------------------------")
 
             Escreval("Número máximo de eleitores(as) atingido! A urna será desativada.")
             
             Interrompa()
-
+         
          FimSe
+
+      Senao
+
+         Interrompa()
 
       FimSe
 
