@@ -1,0 +1,1 @@
+Fazer com que os dois filtros funcionem em conjunto.

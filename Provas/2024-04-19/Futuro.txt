@@ -1,0 +1,1 @@
+Impedir erros ocasionados devido a entradas de dados inválidos.
