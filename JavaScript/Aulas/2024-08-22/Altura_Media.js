@@ -79,16 +79,16 @@ while(qnt_jogadores < 22)
 
 }
 
-console.log("A maior altura pertence ao jogador " + maior_jogador.nome + ", sendo " + maior_jogador.altura.toFixed(2) + " metros.");
+console.log("A maior altura pertence ao jogador " + maior_jogador.nome + ", sendo " + maior_jogador.altura.toFixed(2) + " metro(s).");
 
 console.log("-------------------------------------------------------------------------------------------------");
 
-console.log("A menor altura pertence ao jogador " + menor_jogador.nome + ", sendo " + menor_jogador.altura.toFixed(2) + " metros.");
+console.log("A menor altura pertence ao jogador " + menor_jogador.nome + ", sendo " + menor_jogador.altura.toFixed(2) + " metro(s).");
 
 console.log("-------------------------------------------------------------------------------------------------");
 
 altura_media = (maior_jogador.altura + menor_jogador.altura) / 2;
 
-console.log("A altura média deste time é: " + altura_media.toFixed(2) + " metros.");
+console.log("A altura média deste time é: " + altura_media.toFixed(2) + " metro(s).");
 
 console.log("-------------------------------------------------------------------------------------------------");

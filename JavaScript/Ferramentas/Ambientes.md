@@ -1,7 +1,7 @@
 # Playcode (JavaScript):
 
-### [Clique aqui.](https://playcode.io/empty_javascript)
+### <a target="_blank" href="https://playcode.io/empty_javascript"> Clique aqui. </a>
 
 # p5.js:
 
-### [Clique aqui.](https://editor.p5js.org/)
+### <a target="_blank" href="https://editor.p5js.org/"> Clique aqui. </a>

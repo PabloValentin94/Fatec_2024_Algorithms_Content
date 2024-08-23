@@ -26,8 +26,6 @@ qnt_nomes = parseInt(prompt("Digite a quantidade de nomes que serão especificad
 for(var i = 0; i < qnt_nomes; i++)
 {
 
-    console.log("---------------------------------------------------------------");
-
     nomes.push(prompt("Insira o " + (i + 1) + "º nome:"));
     
 }
