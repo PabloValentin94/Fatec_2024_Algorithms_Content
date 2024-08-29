@@ -26,7 +26,7 @@ var classificacao = "";
 function Classificar_IMC(valor)
 {
 
-    var resultado = "";
+    let resultado = "";
 
     if(valor < 18.5)
     {

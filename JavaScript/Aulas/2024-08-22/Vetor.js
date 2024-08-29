@@ -8,8 +8,6 @@
 
 var nomes = [];
 
-qnt_nomes = 0;
-
 // Funções:
 
 function Listar_Nomes()
@@ -21,9 +19,9 @@ function Listar_Nomes()
 
 // Código:
 
-qnt_nomes = parseInt(prompt("Digite a quantidade de nomes que serão especificados a seguir:"));
+const qnt_nomes = parseInt(prompt("Digite a quantidade de nomes que serão especificados a seguir:"), 10);
 
-for(var i = 0; i < qnt_nomes; i++)
+for(let i = 0; i < qnt_nomes; i++)
 {
 
     nomes.push(prompt("Insira o " + (i + 1) + "º nome:"));
