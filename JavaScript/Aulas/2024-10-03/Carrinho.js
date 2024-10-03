@@ -174,7 +174,7 @@ class Carrinho_Compras
 
         }
 
-        return valor_total;
+        return valor_total.toFixed(2);
 
     }
     
@@ -251,7 +251,11 @@ console.log(Validar_Pesquisa("Tênis"));
 
 console.log("------------------------------------------------------------------");
 
-console.log("Quantidade atual de itens do carrinho de compras:", carrinho.Contar());
+console.log(`Quantidade atual de itens do carrinho de compras: ${carrinho.Contar()}`);
+
+console.log("------------------------------------------------------------------");
+
+console.log(`Valor monetário total do carrinho de compras: R$${carrinho.Calcular()}`);
 
 console.log("------------------------------------------------------------------");
 
