@@ -1,0 +1,22 @@
+Lista Dinamicamente Encadeada:
+
+    - Criação da(s) Classe(s) : 0.223 milissegundos;
+    - Criação do Objeto Principal: 0.114 milissegundos;
+    - Execução dos Testes: 0.485 milissegundos.
+
+Lista Duplamente Encadeada:
+
+    - Criação da(s) Classe(s) : 0.242 milissegundos;
+    - Criação do Objeto Principal: 0.135 milissegundos;
+    - Execução dos Testes: 0.573 milissegundos.
+
+Árvore Binária:
+
+    - Criação da(s) Classe(s) : 0.191 milissegundos;
+    - Criação do Objeto Principal: 0.118 milissegundos;
+    - Execução dos Testes: 0.793 milissegundos.
+
+Observações:
+
+    - Valores retirados do console de depuração (Execute os respectivos arquivos.);
+    - Tenha em mente que esses valores podem tem uma pequena ou grande alteração. Depende da máquina que estiver executando.
